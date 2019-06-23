@@ -3,8 +3,8 @@ const zh_CN = {
         title: "祭按钮",
         info: "信息",
         null: "空",
-        audioStaff: "音频剪辑: Xy",
-        toGithub: "请在Github参与翻译、增补音频或提出建议",
+        audioStaff: "音频剪辑: Xy, 东鸟 技术支持：FZxiao, 财布： 乌拉拉",
+        toGithub: "请发送邮箱至voice@natsuiromatsuri.moe参与翻译、增补音频或提出建议",
         notOfficial: "本站为爱好者作品，和hololive官方没有关联"
     },
     action: {
