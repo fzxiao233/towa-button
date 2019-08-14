@@ -10,11 +10,4 @@ before_install:
 - chmod 600 ./id_rsa
 - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
-- cd $TRAVIS_BUILD_DIR/dist
-- tar zcvf ../matsuri.tar.gz .
-- cd $TRAVIS_BUILD_DIR
-- scp -P $deploy_port -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-  matsuri.tar.gz ${deploy_user}@${deploy_host}:/home/ubuntu/natsuiromatsuri.moe
-- ssh -p $deploy_port -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-  ${deploy_user}@${deploy_host} 'cd /home/ubuntu/natsuiromatsuri.moe && tar zxvf matsuri.tar.gz && rm -f
-  matsuri.tar.gz'
+- rsync -az --delete ./dist/* ubuntu@$SERVER_IP_ADDRESS:/home/ubuntu/natsuiromatsuri.moe
