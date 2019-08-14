@@ -8,6 +8,6 @@ before_install:
   -in id_rsa.enc -out ./id_rsa -d
 - eval "$(ssh-agent -s)"
 - chmod 600 ./id_rsa
-- ssh-add /tmp/id_rsa
+- ssh-add ./id_rsa
 after_success:
 - rsync -az --delete ./dist/* ubuntu@$SERVER_IP_ADDRESS:/home/ubuntu/natsuiromatsuri.moe
