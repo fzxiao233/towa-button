@@ -4,16 +4,17 @@ node_js:
 script:
 - npm run build
 before_install:
-- openssl aes-256-cbc -K $encrypted_62a3e116008b_key -iv $encrypted_62a3e116008b_iv
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- echo -e "Host ${deploy_host}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- openssl aes-256-cbc -K $encrypted_129e9655e426_key -iv $encrypted_129e9655e426_iv
+  -in id_rsa.enc -out ./id_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 ./deploy_key
+- echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
 - cd $TRAVIS_BUILD_DIR/dist
-- tar zcvf ../aqua.tar.gz .
+- tar zcvf ../matsuri.tar.gz .
 - cd $TRAVIS_BUILD_DIR
 - scp -P $deploy_port -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-  aqua.tar.gz ${deploy_user}@${deploy_host}:/var/www/aqua/
+  matsuri.tar.gz ${deploy_user}@${deploy_host}:/home/ubuntu/natsuiromatsuri.moe
 - ssh -p $deploy_port -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-  ${deploy_user}@${deploy_host} 'cd /var/www/aqua && tar zxvf aqua.tar.gz && rm -f
-  aqua.tar.gz'
+  ${deploy_user}@${deploy_host} 'cd /home/ubuntu/natsuiromatsuri.moe && tar zxvf matsuri.tar.gz && rm -f
+  matsuri.tar.gz'
