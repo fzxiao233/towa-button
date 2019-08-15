@@ -14,6 +14,8 @@ Related Links:
 
 ### 添加或修改音频
 
+请各位以文件夹的形式分类，并将音频文件以 中文_日文.mp3 的格式命名后，将文件下载地址贴至issue里，或直接按下列手动编辑后发送pr来添加音频
+
 **简述**：所有的音频信息都存储在[src/voices.json](src/voices.json)中，要添加或修改音频，你需要对应的修改这个文件。
 
 音频一律为mp3格式，存储在[public/voices](public/voices)中。对应的URL为`voices/`。
