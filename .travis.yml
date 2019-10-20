@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- node
+script:
+- npm run build
+before_install:
+- openssl aes-256-cbc -K $encrypted_129e9655e426_key -iv $encrypted_129e9655e426_iv
+  -in id_rsa.enc -out ./id_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 ./id_rsa
+- ssh-add ./id_rsa
+- echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+after_success:
+- rsync -az --delete ./dist/* ubuntu@$SERVER_IP_ADDRESS:/home/ubuntu/natsuiromatsuri.moe
