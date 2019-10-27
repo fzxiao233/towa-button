@@ -18,7 +18,8 @@
     "vue-class-component": "^6.3.2",
     "vue-i18n": "^8.4.0",
     "vue-router": "^3.0.1",
-    "vue-slider-component": "^2.8.2"
+    "vue-slider-component": "^2.8.2",
+    "vue-uuid": "^1.1.1"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.24",

@@ -87,45 +87,14 @@
 
     @Component
     class HomePage extends Vue {
-        // voices = VoiceList.voices
-        r_voices = [];
-        r_category = [];
         voices = [];
+
         created() {
-            this.getVoices();
+            this.getVoice()
         }
-
-        getVoices() {
-            axios.get('http://127.0.0.1:5000/api/config')
-                .then(response => ((this.r_voices = response['data']['voices']),(this.r_category = response['data']['category']),(this.adapt_data())))
+        getVoice() {
+            axios.get('voices.json').then(Response => (this.voices = Response['data']['voices']))
         }
-
-        adapt_data() {
-            for (let category of this.r_category) {
-                let adapt_data = {
-                    'categoryName': category['categoryID'],
-                    'categoryDescription': {'zh-CN': category['zh_CN'], 'ja-JP': category['ja_JP']},
-                    'voiceList': []
-                };
-                for (let voice of this.r_voices) {
-                    if (voice['categoryID'] === category['categoryID']) {
-                        let adapt_voice = {
-                            "name": voice['filename'].split('.')[0],
-                            "path": voice['filename'],
-                            "description": {
-                                "zh-CN": voice['zh_CN'],
-                                "ja-JP": voice['ja_JP']
-                            }
-                        };
-                        adapt_data['voiceList'].push(adapt_voice);
-                        console.log(adapt_voice)
-                    }
-                }
-                console.log(adapt_data);
-                this.voices.push(adapt_data)
-            }
-        }
-
         play(path) {
             this.stopPlay();
             let player = document.getElementById('player');

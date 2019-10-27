@@ -13,7 +13,8 @@ global.jQuery = global.$ = $;
 import 'bootstrap'
 import GlobalConst from './globalconst'
 
-import VoiceList from './voices.json'
+let VoiceList = [];
+let xhr = $.ajax('voices.json', {async: false}).done(data => (VoiceList = data));
 
 
 //提取标签到语言文件

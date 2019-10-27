@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 
+// @ts-ignore
 module.exports = {
     configureWebpack: {
       plugins: [

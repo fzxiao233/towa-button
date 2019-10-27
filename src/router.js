@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 import HomePage from './components/home.vue'
 import Admin from './components/admin'
-import Upload from './components/upload'
 
 Vue.use(Router)
 

@@ -1,6 +1,20 @@
 <template>
     <div>
-        <upload></upload>
+        <div class="form-group">
+        <h2>上传语音</h2>
+        <label>
+            语音中文名称
+            <input type="text" v-model="newVoice['zh_CN']" class="form-control">
+        </label>
+        <label>
+            语音日文名称
+            <input type="text" v-model="newVoice['ja_JP']" class="form-control">
+        </label>
+        <label class="form-control-static">选择音频文件
+            <input type="file" id="file" @change="getFile"></label>
+
+        <button type="submit" @click="uploadItem" class="btn btn-primary">上传</button>
+    </div>
         <h2>分类</h2>
         <table class="table">
             <thead>
@@ -11,10 +25,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="cata in r_category" :key="cata.categoryID">
-                <td><input v-model="cata.categoryID"></td>
-                <td><input v-model="cata['zh_CN']"></td>
-                <td><input v-model="cata['ja_JP']"></td>
+            <tr v-for="category in voices" :key="category.categoryName">
+                <td><input v-model="category['categoryName']"></td>
+                <td><input v-model="category['categoryDescription']['zh-CN']"></td>
+                <td><input v-model="category['categoryDescription']['ja-JP']"></td>
             </tr>
             </tbody>
         </table>
@@ -23,7 +37,7 @@
         </div>
 
         <h2>音频列表</h2>
-        <table class="table">
+        <table class="table" v-for="category in voices" :key="category['categoryName']">
             <thead>
             <tr>
                 <th scope="col">分类(categoryID)</th>
@@ -33,11 +47,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="voice in r_voices" :key="voice['filename']">
-                <td><input v-model="voice['categoryID']"></td>
-                <td><input v-model="voice['filename']"></td>
-                <td><input v-model="voice['zh_CN']"></td>
-                <td><input v-model="voice['ja_JP']" @click="modify"></td>
+            <tr v-for="voice in category.voiceList" :key="voice['path']">
+                <td><input v-model="category['categoryName']"></td>
+                <td><input v-model="voice['path']"></td>
+                <td><input v-model="voice['description']['zh-CN']"></td>
+                <td><input v-model="voice['description']['ja-JP']"></td>
             </tr>
             </tbody>
         </table>
@@ -47,45 +61,51 @@
 
 <script>
     import axios from 'axios'
-    import upload from "./upload";
+    import uuid from 'vue-uuid'
 
     export default {
         name: "Admin",
-        components: {
-            upload: upload
-        },
         data() {
             return {
-                r_voices: [],
-                r_category: [],
-                voice_modify: [],
-                category_modify: []
+                voices: [],
+                file: '',
+                newVoice: {}
             }
         },
         methods: {
-            get_config() {
-                axios.get('http://127.0.0.1:5000/api/config')
-                    .then(response => ((this.r_voices = response['data']['voices']),(this.r_category = response['data']['category'])))
-            },
-            modify(e) {
-                console.log(e)
-            },
-            submitConfig() {
-                axios.post("http://127.0.0.1:5000/api/config", {
-                    config: JSON.stringify({voices: this.config})
-                }).then(
-                    response => (alert(response[data][msg]))
-                )
-            },
+            getVoice() {
+            axios.get('voices.json').then(Response => (this.voices = Response['data']['voices']))
+        },
             addCategory() {
                 let model = {
                     "categoryName": "", "categoryDescription": {"zh-CN": "", "ja-JP": ""}, "voiceList": []
                 };
-                this.config.push(model)
+                this.voices.push(model)
+            },
+            submitConfig() {
+                axios.post('http://127.0.0.1:5000/api/submit', {
+                    voices: this.voices
+                })
+            },
+            uploadItem() {
+                let form = new FormData();
+                form.append('file', this.file);
+                form.append('zh_CN', this.newVoice['zh_CN']);
+                form.append('ja_JP', this.newVoice['ja_JP']);
+                let config = {
+                    headers: {'Content-Type': 'multipart/form-data'}
+                };
+                axios.post("http://127.0.0.1:5000/api/upload", form, config).then(
+                    response => (console.log(response.data))
+                );
+
+            },
+            getFile(e) {
+                this.file = e.target.files[0]
             }
         },
         created() {
-            this.get_config()
+            this.getVoice()
         }
     }
 </script>
