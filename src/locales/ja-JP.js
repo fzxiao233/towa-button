@@ -1,10 +1,10 @@
 const ja_JP = {
     info: {
-        title: "まつりボタン",
+        title: "トワボタン",
         info: "通知",
         null: "空",
-        audioStaff: "オーディオクリップ: Xy, 东鸟",
-        toGithub: "voice@natsuiromatsuri.moe翻訳に参加、音声を追加および提案をしてください。",
+        audioStaff: "Author: FZxiao",
+        toGithub: "Github 翻訳に参加、音声を追加および提案をしてください。",
         notOfficial: "このサイトはファン作品であり、公式とは関係ありません。"
     },
     action: {
@@ -16,8 +16,7 @@ const ja_JP = {
     },
     lang: {
         'zh-CN': "简体中文",
-        'en-US': "English",
         'ja-JP': "日本語"
     }
-}
+};
 export default ja_JP;

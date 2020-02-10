@@ -1,10 +1,10 @@
 const zh_CN = {
     info: {
-        title: "祭按钮",
+        title: "永远按钮",
         info: "信息",
         null: "空",
-        audioStaff: "音频剪辑: Xy, 东鸟 技术支持：FZxiao, 财布： まつり大好きです",
-        toGithub: "请发送邮箱至voice@natsuiromatsuri.moe参与翻译、增补音频或提出建议",
+        audioStaff: "制作：FZxiao",
+        toGithub: "请到Github发送issue参与本项目",
         notOfficial: "本站为爱好者作品，和hololive官方没有关联"
     },
     action: {
@@ -16,8 +16,7 @@ const zh_CN = {
     },
     lang: {
         'zh-CN': "简体中文",
-        'en-US': "English",
         'ja-JP': "日本語"
     }
-}
+};
 export default zh_CN;

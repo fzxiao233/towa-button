@@ -61,7 +61,6 @@
 
 <script>
     import axios from 'axios'
-    import uuid from 'vue-uuid'
 
     export default {
         name: "Admin",
@@ -83,7 +82,7 @@
                 this.voices.push(model)
             },
             submitConfig() {
-                axios.post('http://127.0.0.1:5000/api/submit', {
+                axios.post('http://towa.matsuri.best/api/submit', {
                     voices: this.voices
                 })
             },
@@ -95,7 +94,7 @@
                 let config = {
                     headers: {'Content-Type': 'multipart/form-data'}
                 };
-                axios.post("http://127.0.0.1:5000/api/upload", form, config).then(
+                axios.post("http://towa.matsuri.best/api/upload", form, config).then(
                     response => (console.log(response.data))
                 );
 

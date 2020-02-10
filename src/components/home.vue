@@ -21,13 +21,13 @@
 
 <style lang="scss" scoped>
     .cate-header {
-        background-color: rgba(132, 120, 122, 1);
+        background-color: #594a6f;
         border: 1px solid rgba(0, 0, 0, 0.5);
         border-radius: 10px;
         text-align: center;
         font-size: 20px;
         margin-bottom: 12px;
-        color: #ffffff
+        color: #fff
     }
 
     .cate-body {
@@ -40,26 +40,26 @@
     }
 
     .btn-new {
-        color: #000000;
-        background-color: rgb(248, 207, 123);
-        border-color: rgb(175, 96, 24);
+        color: #fcf5ea;
+        background-color: #b88cbd;
+        border-color: rgb(221, 164, 226);
     }
 
     .btn-new:hover {
-        color: #333;
-        background-color: rgba(248, 207, 123, 0.6);
-        border-color: rgb(175, 96, 24);
+        color: #fff;
+        background-color: #c494c9;
+        border-color: rgb(221, 164, 226);
     }
 
     .btn-info {
-        color: #000000;
-        background-color: rgb(248, 207, 123);
+        color: #fcf5ea;
+        background-color: #e65790;
         border-color: rgb(175, 96, 24);
     }
 
     .btn-info:hover {
-        color: #333;
-        background-color: rgba(248, 207, 123, 0.6);
+        color: #fcf5ea;
+        background-color: #e65790;
         border-color: rgb(175, 96, 24);
     }
 
@@ -72,9 +72,12 @@
     .open > .dropdown-toggle.btn-info.focus,
     .open > .dropdown-toggle.btn-info:focus,
     .open > .dropdown-toggle.btn-info:hover {
-        color: #333;
-        background-color: rgba(248, 207, 123, 0.6);
+        color: #fcf5ea;
+        background-color: #e65790;
         border-color: rgb(175, 96, 24);
+    }
+    .bg {
+        background-color: #433a50;
     }
 </style>
 

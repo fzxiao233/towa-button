@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import HomePage from './components/home.vue'
-import Admin from './components/admin'
+const HomePage = () => import('./components/home.vue');
+const Admin = () => import('./components/admin');
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
