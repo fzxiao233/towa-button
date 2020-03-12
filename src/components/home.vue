@@ -41,7 +41,7 @@
 
     .btn-new {
         color: #fcf5ea;
-        background-color: #b88cbd;
+        background-color: #dda4e2;
         border-color: rgb(221, 164, 226);
     }
 
