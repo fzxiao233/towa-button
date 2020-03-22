@@ -3,7 +3,7 @@ const zh_CN = {
         title: "永远按钮",
         info: "信息",
         null: "空",
-        audioStaff: "制作：FZxiao",
+        audioStaff: "制作：FZxiao, 夜空夏祭り",
         toGithub: "请到Github发送issue参与本项目",
         notOfficial: "本站为爱好者作品，和hololive官方没有关联"
     },

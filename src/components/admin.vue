@@ -72,7 +72,8 @@
                     <div class="modal-body">
                         <label>
                             <select v-model="targetCategoryID">
-                                <option v-for="category in voices" :key="category['categoryName']" :value="category.categoryName">
+                                <option :key="category['categoryName']" :value="category.categoryName"
+                                        v-for="category in voices">
                                     {{category['categoryDescription']['zh-CN']}}
                                 </option>
                             </select>
@@ -80,7 +81,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">退出</button>
-                        <button type="button" class="btn btn-primary" @click="moveVoice" data-dismiss="modal">保存</button>
+                        <button @click="moveVoice" class="btn btn-primary" data-dismiss="modal" type="button">保存
+                        </button>
                     </div>
                 </div>
             </div>
@@ -106,7 +108,7 @@
         },
         methods: {
             getVoice() {
-                axios.get('voices.json').then(Response => (this.voices = Response['data']['voices']))
+                axios.get('voices.json?timestamp=' + new Date().getTime()).then(Response => (this.voices = Response['data']['voices']))
             },
             addCategory() {
                 let model = {
@@ -117,6 +119,9 @@
             submitConfig() {
                 axios.post('https://towa.live/api/submit', {
                     voices: this.voices
+                }).then(resp => {
+                    alert(resp.data + "提交成功");
+                    this.getVoice();
                 })
             },
             uploadItem() {
@@ -125,10 +130,15 @@
                 form.append('zh_CN', this.newVoice['zh_CN']);
                 form.append('ja_JP', this.newVoice['ja_JP']);
                 let config = {
-                    headers: {'Content-Type': 'multipart/form-data'}
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
                 };
                 axios.post("https://towa.live/api/upload", form, config).then(
-                    response => (console.log(response.data))
+                    response => {
+                        alert(response.data + "上传成功");
+                        this.getVoice();
+                    }
                 );
 
             },

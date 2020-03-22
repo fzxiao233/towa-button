@@ -8,13 +8,13 @@ import zh_CN from './locales/zh-CN'
 import ja_JP from './locales/ja-JP'
 
 import $ from 'jquery'
-global.jQuery = global.$ = $;
-
 import 'bootstrap'
 import GlobalConst from './globalconst'
 
+global.jQuery = global.$ = $;
+
 let VoiceList = [];
-let xhr = $.ajax('voices.json', {async: false}).done(data => (VoiceList = data));
+let xhr = $.ajax('voices.json?timestamp=' + new Date().getTime(), {async: false}).done(data => (VoiceList = data));
 
 
 //提取标签到语言文件

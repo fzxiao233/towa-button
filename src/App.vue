@@ -73,13 +73,13 @@
         <div class="pull-right">
           <div class="text-right">
             <a
-              class="text-color"
-              href="https://github.com/fzxiao233/matusri-button"
-              target="_blank"
+                    class="text-color"
+                    href="https://github.com/fzxiao233/towa-button"
+                    target="_blank"
             >
               {{$t("info.toGithub")}}
               <img
-                src="https://img.shields.io/github/stars/fzxiao233/matusri-button.svg?style=social"
+                      src="https://img.shields.io/github/stars/fzxiao233/towa-button.svg?style=social"
               />
             </a>
           </div>
@@ -154,11 +154,11 @@ body {
 </style>
 
 <script>
-import Vue from "vue";
-import Component from "vue-class-component";
-import Modal from "./components/modal.vue";
+  import Vue from "vue";
+  import Component from "vue-class-component";
+  import Modal from "./components/modal.vue";
 
-//import fetchpost from './util/fetchpost'
+  //import fetchpost from './util/fetchpost'
 
 @Component({
   components: {
